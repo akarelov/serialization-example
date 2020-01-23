@@ -9,7 +9,8 @@ public class Application {
     }
 
     public static void serializationFile(String filename) throws IOException, ClassNotFoundException {
-        Book book = new Book("book number 1", "description of book number 1");
+        Author author = new Author("firstName", "lastName");
+        Book book = new Book("book number 1", "description of book number 1", author);
 
         OutputStream outputStream = new FileOutputStream(filename);
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
@@ -19,7 +20,7 @@ public class Application {
         ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
         Book bookFromFile = (Book) objectInputStream.readObject();
 
-        System.out.println(book.getTitle() + " " + bookFromFile.getDescription());
+        System.out.println(book.getTitle() + " " + bookFromFile.getDescription() + " " + bookFromFile.getAuthor().toString());
     }
 
 }
